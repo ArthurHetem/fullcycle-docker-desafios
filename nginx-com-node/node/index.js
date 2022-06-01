@@ -10,7 +10,6 @@ const config = {
 };
 
 const mysql = require('mysql');
-const connection = mysql.createConnection(config);
 
 const sqlInsert = `INSERT INTO people(name) values('Arthur'), ('Enzo')`;
 const sqlQuery = `SELECT * FROM people`;
