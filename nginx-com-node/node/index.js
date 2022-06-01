@@ -15,17 +15,16 @@ const connection = mysql.createConnection(config);
 const sqlInsert = `INSERT INTO people(name) values('Arthur'), ('Enzo')`;
 const sqlQuery = `SELECT * FROM people`;
 
-let resultList = [];
-
 app.get('/', (req, res) => {
+  const connection = mysql.createConnection(config);
   connection.query(sqlInsert);
   connection.query(sqlQuery, function (err, result, fields) {
     if (err) throw err;
-    resultList = result;
+    res.send('<h1>Full Cycle</h1> <ul>' + result.map(item => `<li>${item.name}</li>`).join('') +'</ul>');
   });
   connection.end();
-  res.send('<h1>Full Cycle</h1> <ul>' + resultList.map(item => `<li>${item.name}</li>`).join('') +'</ul>');
 
 });
+
 
 app.listen(port, () => console.log(`Rodando na porta ${port}!`));

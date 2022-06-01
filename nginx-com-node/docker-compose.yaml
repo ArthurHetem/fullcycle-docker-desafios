@@ -11,6 +11,7 @@ services:
       - node-nginx
     depends_on:
       - app
+      - db
   app:
     build:
       context: node
@@ -20,6 +21,7 @@ services:
       - node-nginx
     volumes:
       - ./node:/usr/src/app
+      - /usr/src/app/node_modules
     tty: true
     ports:
       - "3000:3000"
